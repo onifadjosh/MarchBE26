@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('partials/nav.ejs') %>
+
+    <div class="d-flex flex-wrap gap-3">
+      <% products.forEach((_, idx) => { %>
+      <div class="card" style="width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title"><%= _.productName %></h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">
+            $<%= _.productPrice%>
+          </h6>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card’s content.
+          </p>
+          <form action="/delete/<%= idx %>" method="post">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+          <form action="/edit/<%= idx %>" method="get">
+            <button class="btn btn-dark">Edit</button>
+          </form>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </body>
+</html>
